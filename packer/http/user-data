@@ -1,0 +1,22 @@
+#cloud-config
+
+autoinstall:
+    version: 1
+    ssh:
+        install-server: true
+        allow-pw: true
+        authorized-keys: 
+            [
+                "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGHCUOSzCyWhC3hBRpqbaFtjdWrgQFS3Jg/8AP70oUZT jwilliams@DESKTOP-HK3HD9N",
+            ]
+    users:
+      - name: jwilliams
+        groups: admin
+        sudo: ALL=(ALL) NOPASSWD:ALL
+        ssh-authorized-keys:
+            [
+                "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGHCUOSzCyWhC3hBRpqbaFtjdWrgQFS3Jg/8AP70oUZT jwilliams@DESKTOP-HK3HD9N",
+            ]
+        lock_passwd: false
+        passwd: $6$rounds=500000$rnZLvuOTKbrDpNS8$L2.7SMm8hQ7hHH9jkLL.dGo5yNWSgywK2v6zkF0mWVEu7sBwkqQvJBPbYCi.nDdjC7tbtvN7XwtvlwYY8A/U20
+        shell: /bin/bash
