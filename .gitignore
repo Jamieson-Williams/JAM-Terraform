@@ -3,3 +3,5 @@
 *.tfvars
 terraform.tfstate*
 .terraform*
+*.pkrvars.hcl
+packer_build_vault.sh
