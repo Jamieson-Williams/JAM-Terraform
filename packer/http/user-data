@@ -9,7 +9,7 @@ autoinstall:
     identity:
         username: root
         hostname: packer-ubuntu
-        password: $6$adgl6.xj6MiKPkhr$Vi1Y3sk81VuT13Zyn9YOg2qK.kgY/MT.mNtxJ4XZ1fj1FnmDE1.mqZ.ktpbT2gx6bTg7iN6lFDDkCeG/E63DM1
+        password: $y$j9T$ouzGy4SAU0vC8853jzBLh/$SQDe0OvaT6Iwrrdm3mUzZfzFM8y6Jk0mNyq6JutN13.
     
     #SSH settings 
     ssh:
@@ -47,7 +47,7 @@ autoinstall:
                       "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGHCUOSzCyWhC3hBRpqbaFtjdWrgQFS3Jg/8AP70oUZT jwilliams@DESKTOP-HK3HD9N",
                   ]
               lock_passwd: false
-              passwd: $rnZLvuOTKbrDpNS8$L2.7SMm8hQ7hHH9jkLL.dGo5yNWSgywK2v6zkF0mWVEu7sBwkqQvJBPbYCi.nDdjC7tbtvN7XwtvlwYY8A/U20
+              passwd: $y$j9T$t5jH3nZ5cS4GhcassJ7dc/$V8wVIaqIfBU5E3Rv4lTQXq5mrKxdeLqFo1xR.n1ifV7
               shell: /bin/bash
 
             - name: ansible
@@ -57,6 +57,7 @@ autoinstall:
                   [
                       ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAII+YdhQngy/rKv17cyRtdRsNFgTUYwBr6nGaPIGE0Xv8 ansible
                   ]
+              shell: /bin/bash
     
         #Post cloud-init commands. Reset Machine ID to ensure unique ID for each instance created with this template.
         runcmd:

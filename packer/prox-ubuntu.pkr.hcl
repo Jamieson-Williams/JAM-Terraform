@@ -9,7 +9,7 @@ source "proxmox-iso" "ubuntu" {
     node                        = var.pm_node
     iso_storage_pool            = var.pm_iso_storage_pool
     vm_name                     = "packer-ubuntu"
-    vm_id                        = "200"
+    vm_id                        = "201"
     memory                      = 4096
     cores                       = 2
     cpu_type                    = "host"

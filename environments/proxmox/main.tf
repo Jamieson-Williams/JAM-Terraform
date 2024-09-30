@@ -1,11 +1,20 @@
 resource "proxmox_vm_qemu" "terraform-test-01" {
     name = "terraform-test-01"
     target_node = "pve"
+    desc = "VM created from packer image 201"
     cores = 1
     sockets = 1
     memory = 2048
     bios = "ovmf"
-    os_type = 126
+    scsihw = "virtio-scsi-single"
+    os_type = "cloud-init"
+    clone = "ubuntu-server-24"
+
+    #Cloud-Init config
+    agent = 1
+    ciuser = "root"
+    sshkeys = file("~/.ssh/terraform.pub")
+    ipconfig0 = "dhcp"
 
     disks {
         scsi {
@@ -17,13 +26,6 @@ resource "proxmox_vm_qemu" "terraform-test-01" {
                 }
             }
         }
-        ide {
-            ide0 {
-              cdrom {
-                  iso = "local:iso/ubuntu-24.04.1-live-server-amd64.iso"
-                }
-            }
-        } 
     }
     network {
         model = "virtio"
