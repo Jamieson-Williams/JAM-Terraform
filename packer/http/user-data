@@ -2,21 +2,64 @@
 
 autoinstall:
     version: 1
+    refresh-installer: 
+        update: true
+    
+    #Device details
+    identity:
+        username: root
+        hostname: packer-ubuntu
+        password: $6$adgl6.xj6MiKPkhr$Vi1Y3sk81VuT13Zyn9YOg2qK.kgY/MT.mNtxJ4XZ1fj1FnmDE1.mqZ.ktpbT2gx6bTg7iN6lFDDkCeG/E63DM1
+    
+    #SSH settings 
     ssh:
         install-server: true
         allow-pw: true
+        #allow_public_ssh_keys: true
         authorized-keys: 
             [
-                "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGHCUOSzCyWhC3hBRpqbaFtjdWrgQFS3Jg/8AP70oUZT jwilliams@DESKTOP-HK3HD9N",
+                "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAII5GEFdf7nJUMjTzI5e6ck2qCYVYHsWTk1PHE8gplj7I jwilliams@DESKTOP-HK3HD9N",
             ]
-    users:
-      - name: jwilliams
-        groups: admin
-        sudo: ALL=(ALL) NOPASSWD:ALL
-        ssh-authorized-keys:
-            [
-                "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGHCUOSzCyWhC3hBRpqbaFtjdWrgQFS3Jg/8AP70oUZT jwilliams@DESKTOP-HK3HD9N",
-            ]
-        lock_passwd: false
-        passwd: $6$rounds=500000$rnZLvuOTKbrDpNS8$L2.7SMm8hQ7hHH9jkLL.dGo5yNWSgywK2v6zkF0mWVEu7sBwkqQvJBPbYCi.nDdjC7tbtvN7XwtvlwYY8A/U20
-        shell: /bin/bash
+    
+    #Date and Time settings
+    timezone: Australia/Melbourne
+    locale: en_US.UTF-8
+    
+    #Package management and installs
+    updates: all
+    packages:
+        - qemu-guest-agent
+    
+    #User setup
+    user-data:
+        preserve_hostname: false
+        #Disk configuration options
+        growpart:
+            mode: auto
+            devices: ["/"]
+            ignore_growroot_disabled: false
+        users:
+            - name: jwilliams
+              groups: [admin, sudo]
+              sudo: ALL=(ALL) NOPASSWD:ALL
+              ssh_authorized_keys:
+                  [
+                      "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGHCUOSzCyWhC3hBRpqbaFtjdWrgQFS3Jg/8AP70oUZT jwilliams@DESKTOP-HK3HD9N",
+                  ]
+              lock_passwd: false
+              passwd: $rnZLvuOTKbrDpNS8$L2.7SMm8hQ7hHH9jkLL.dGo5yNWSgywK2v6zkF0mWVEu7sBwkqQvJBPbYCi.nDdjC7tbtvN7XwtvlwYY8A/U20
+              shell: /bin/bash
+
+            - name: ansible
+              groups: [admin, sudo]
+              sudo: ALL=(ALL) NOPASSWD:ALL
+              ssh_authorized_keys:
+                  [
+                      ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAII+YdhQngy/rKv17cyRtdRsNFgTUYwBr6nGaPIGE0Xv8 ansible
+                  ]
+    
+        #Post cloud-init commands. Reset Machine ID to ensure unique ID for each instance created with this template.
+        runcmd:
+            - sudo bash -c "echo null > /etc/machine-id"
+            - sudo bash -c "echo null > /var/lib/dbus/machine-id"
+            - [cloud-init, clean, "--machine-id"]

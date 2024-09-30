@@ -40,8 +40,20 @@ variable "ssh_user" {
     sensitive = true 
 }
 
-variable "ssh_password" {
-    description = "SSH user account password"
+#variable "ssh_password" {
+#    description = "SSH user account password"
+#    type = string
+#    sensitive = true 
+#}
+
+variable "ssh_private_key" {
+    description = "Path to SSH private key"
     type = string
-    sensitive = true 
+    sensitive = true
+}
+
+variable "http_ip" {
+    description = "HTTP address to access cloud-init user-data file from"
+    type = string
+    sensitive = true
 }
