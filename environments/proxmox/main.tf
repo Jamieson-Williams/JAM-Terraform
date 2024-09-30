@@ -1,7 +1,8 @@
-resource "proxmox_vm_qemu" "terraform-test-01" {
-    name = "terraform-test-01"
+resource "proxmox_vm_qemu" "JAM-server" {
+    name = "JAM-Nas-01"
     target_node = "pve"
-    desc = "VM created from packer image 201"
+    desc = "VM created from packer image 500"
+    vmid = 200
     cores = 1
     sockets = 1
     memory = 2048
