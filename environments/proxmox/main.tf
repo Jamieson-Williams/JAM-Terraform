@@ -21,7 +21,7 @@ resource "proxmox_vm_qemu" "JAM-server" {
         scsi {
             scsi0 {
                 disk {
-                    size = "20G"
+                    size = "100G"
                     storage = "local-lvm"
                     iothread = true
                 }
