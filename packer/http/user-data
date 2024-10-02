@@ -58,11 +58,7 @@ autoinstall:
                       ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAII+YdhQngy/rKv17cyRtdRsNFgTUYwBr6nGaPIGE0Xv8 ansible
                   ]
               shell: /bin/bash
-
-            - name: newuser
-              groups: [admin]
-              shell: /bin/bash
-    
+              
         #Post cloud-init commands. Reset Machine ID to ensure unique ID for each instance created with this template.
         runcmd:
             - sudo bash -c "echo null > /etc/machine-id"
