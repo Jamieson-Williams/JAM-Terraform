@@ -57,3 +57,15 @@ variable "http_ip" {
     type = string
     sensitive = true
 }
+
+variable "vyos_user" {
+    description = "SSH user account for VyOS"
+    type = string
+    sensitive = true
+}
+
+variable "vyos_password" {
+    description = "SSH password for user account in VyOS"
+    type = string
+    sensitive = true
+}

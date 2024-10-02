@@ -6,10 +6,27 @@ module "nas01" {
   vm_sockets = 2
   vm_memory = 4096
   disk_size = "100G"
-  providers = {
-    
-  }
 }
+
+module "k8s" {
+  source = "./modules/vm-ubuntu-server"
+  vm_name = "JAM-K8s-01"
+  vm_id = 201
+  vm_cores = 4
+  vm_sockets = 2
+  vm_memory = 8196
+  disk_size = "50G"
+}
+
+#module "vyos01" {
+#  source = "./modules/vm-vyos-router"
+#  vm_name = "JAM-Router-test"
+#  vm_id = 101
+#  vm_cores = 1
+#  vm_sockets = 1
+#  vm_memory = 2048
+#  disk_size = "15G"
+#}
 
 #resource "proxmox_vm_qemu" "JAM-server" {
 #    name = "JAM-Nas-01"
