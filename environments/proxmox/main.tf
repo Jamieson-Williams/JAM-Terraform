@@ -25,7 +25,7 @@ module "k8s-nodes" {
   vm_cores = 2
   vm_sockets = 2
   vm_memory = 16384
-  disk_size = "20G"
+  disk_size = "50G"
   count = 2
 }
 
