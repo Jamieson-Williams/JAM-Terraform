@@ -15,7 +15,7 @@ resource "proxmox_vm_qemu" "JAM-server-vm" {
     agent = 1
     ciuser = var.ciuser
     sshkeys = file(var.ssh_public_key_location)
-    ipconfig0 = "dhcp"
+    ipconfig0 = var.vm_ipconfig0
 
     disks {
         scsi {

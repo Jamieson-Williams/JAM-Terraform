@@ -16,6 +16,7 @@ module "k8s" {
   vm_sockets = 2
   vm_memory = 8196
   disk_size = "50G"
+  vm_ipconfig0 = "ip=10.0.10.2/24,gw=10.0.10.1"
 }
 
 module "k8s-nodes" {
@@ -26,6 +27,7 @@ module "k8s-nodes" {
   vm_sockets = 2
   vm_memory = 16384
   disk_size = "50G"
+  vm_ipconfig0 = "ip=10.0.10.${count.index + 5}/24,gw=10.0.10.1"
   count = 2
 }
 

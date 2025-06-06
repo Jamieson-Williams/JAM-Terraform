@@ -94,3 +94,9 @@ variable "network_vlan_tag" {
   type = number
   default = 10
 }
+
+variable "vm_ipconfig0" {
+  type = string
+  description = "IP configuration for cloud-init. Eg: 'ip=10.0.10.2/24,gw=10.0.10.1/24'"
+  default = "dhcp"
+}
