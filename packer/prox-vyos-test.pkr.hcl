@@ -9,7 +9,7 @@ source "proxmox-iso" "vyos" {
     password                    = var.pm_password
     node                        = var.pm_node
     vm_name                     = "packer-vyos"
-    vm_id                       = 501
+    vm_id                       = 550
     tags                        = "vyos;template"
     memory                      = 2048
     cores                       = 1
